@@ -40,13 +40,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Adichan\\Transaction\\": "src",
+            "Adichan\\Wallet\\": "src",
             "Database\\Factories\\": "src/database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Adichan\\Transaction\\Tests\\": "tests"
+            "Adichan\\Wallet\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -63,7 +63,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Adichan\\Transaction\\TransactionServiceProvider"
+                "Adichan\\Wallet\\WalletServiceProvider"
             ],
 	    "factories": "database/factories"
         }

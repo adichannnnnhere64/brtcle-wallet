@@ -137,6 +137,6 @@ return array(
     'Amp\\Cache\\' => array($vendorDir . '/amphp/cache/src'),
     'Amp\\ByteStream\\' => array($vendorDir . '/amphp/byte-stream/src'),
     'Amp\\' => array($vendorDir . '/amphp/amp/src'),
-    'Adichan\\Transaction\\Tests\\' => array($baseDir . '/tests'),
-    'Adichan\\Transaction\\' => array($baseDir . '/src'),
+    'Adichan\\Wallet\\Tests\\' => array($baseDir . '/tests'),
+    'Adichan\\Wallet\\' => array($baseDir . '/src'),
 );
