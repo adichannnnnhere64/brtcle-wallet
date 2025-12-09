@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Adichan\Product\Models;
 
 use Adichan\Product\Models\Product;
 use Adichan\Product\Models\ProductVariation;

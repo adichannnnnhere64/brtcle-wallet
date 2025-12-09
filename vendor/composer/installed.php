@@ -3,7 +3,7 @@
         'name' => 'adichan/product',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'e8af126be7b5564dd00d7b3a7431284bd1f7b601',
+        'reference' => '2ebc77992f9e6963ad1faaae473eafadd2959fe9',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'adichan/product' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'e8af126be7b5564dd00d7b3a7431284bd1f7b601',
+            'reference' => '2ebc77992f9e6963ad1faaae473eafadd2959fe9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

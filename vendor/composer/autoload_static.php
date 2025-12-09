@@ -726,7 +726,8 @@ class ComposerStaticInit41bef29393aaece1fc9932e43d963983
         ),
         'Database\\Factories\\' => 
         array (
-            0 => __DIR__ . '/..' . '/laravel/pint/database/factories',
+            0 => __DIR__ . '/../..' . '/src/database/factories',
+            1 => __DIR__ . '/..' . '/laravel/pint/database/factories',
         ),
         'Cron\\' => 
         array (

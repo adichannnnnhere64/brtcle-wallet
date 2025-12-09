@@ -40,7 +40,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Adichan\\Product\\": "src"
+            "Adichan\\Product\\": "src",
+            "Database\\Factories\\": "src/database/factories/"
         }
     },
     "autoload-dev": {
@@ -64,6 +65,7 @@
             "providers": [
                 "Adichan\\Product\\ProductServiceProvider"
             ],
+	    "factories": "database/factories",
             "aliases": {
                 "Product": "Adichan\\Product\\ProductFacade"
             }

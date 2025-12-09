@@ -16,7 +16,9 @@ class ProductVariation extends Model
 
     protected $casts = [
         'attributes' => 'array',
-        'price_override' => 'decimal:4',
+        'price_override' => 'float',
+        'base_price' => 'float',
+
     ];
 
     public function product(): BelongsTo

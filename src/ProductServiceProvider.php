@@ -21,6 +21,7 @@ class ProductServiceProvider extends ServiceProvider
         /* $this->loadMigrationsFrom(__DIR__.'/../database/migrations'); */
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
+        $this->loadFactoriesFrom(__DIR__.'/database/factories');
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('product.php'),
@@ -31,7 +32,7 @@ class ProductServiceProvider extends ServiceProvider
             ], ['migrations', 'product-variation-migrations']);
 
             $this->publishes([
-                __DIR__.'/../database/factories' => database_path('factories'),
+                __DIR__.'/database/factories' => database_path('factories'),
             ], ['factories', 'product-variation-factories']);
 
             // Publishing the views.

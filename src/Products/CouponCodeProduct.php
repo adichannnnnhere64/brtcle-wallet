@@ -8,6 +8,6 @@ class CouponCodeProduct extends Product
 {
     public function applyRules(float $price): float
     {
-        return $price * 0.9; 
+        return $price * 0.9;
     }
 }

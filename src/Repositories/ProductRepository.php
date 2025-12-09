@@ -1,13 +1,12 @@
 <?php
 
-namespace Adichan\ProductVariation\Repositories;
+namespace Adichan\Product\Repositories;
 
+use Adichan\Product\Interfaces\ProductInterface;
+use Adichan\Product\Interfaces\ProductRepositoryInterface;
+use Adichan\Product\Models\Product;
+use Adichan\Product\Products\CouponCodeProduct;
 use Illuminate\Support\Collection;
-use Adichan\ProductVariation\Interfaces\ProductInterface;
-use Adichan\ProductVariation\Interfaces\ProductRepositoryInterface;
-use Adichan\ProductVariation\Models\Product;
-use Adichan\ProductVariation\Products\CouponCodeProduct;
-use Adichan\ProductVariation\Products\VegetableProduct;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -21,17 +20,19 @@ class ProductRepository implements ProductRepositoryInterface
     public function find(int|string $id): ?ProductInterface
     {
         $product = $this->model->find($id);
+
         return $product ? $this->instantiateByType($product) : null;
     }
 
     public function all(): Collection
     {
-        return $this->model->all()->map(fn($p) => $this->instantiateByType($p));
+        return $this->model->all()->map(fn ($p) => $this->instantiateByType($p));
     }
 
     public function create(array $data): ProductInterface
     {
         $product = $this->model->create($data);
+
         return $this->instantiateByType($product);
     }
 
@@ -39,6 +40,7 @@ class ProductRepository implements ProductRepositoryInterface
     {
         $product = $this->model->findOrFail($id);
         $product->update($data);
+
         return $this->instantiateByType($product);
     }
 
@@ -50,18 +52,19 @@ class ProductRepository implements ProductRepositoryInterface
     public function addVariation(int|string $productId, array $variationData): mixed
     {
         $product = $this->model->findOrFail($productId);
+
         return $product->variations()->create($variationData);
     }
 
     public function findByType(string $type): Collection
     {
-        return $this->model->where('type', $type)->get()->map(fn($p) => $this->instantiateByType($p));
+        return $this->model->where('type', $type)->get()->map(fn ($p) => $this->instantiateByType($p));
     }
 
     protected function instantiateByType(Product $product): ProductInterface
     {
         return match ($product->type) {
-            'coupon' => CouponCodeProduct::unguarded(fn() => new CouponCodeProduct($product->attributesToArray())),
+            'coupon' => CouponCodeProduct::unguarded(fn () => new CouponCodeProduct($product->attributesToArray())),
 
             default => $product,
         };

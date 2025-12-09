@@ -3,16 +3,18 @@
 declare(strict_types=1);
 
 use Adichan\Product\ProductServiceProvider;
+use Adichan\Product\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Sleep;
 use Illuminate\Support\Str;
-use Orchestra\Testbench\TestCase;
+
+/* use Orchestra\Testbench\TestCase; */
 
 pest()->extend(TestCase::class)
-    ->use(RefreshDatabase::class)
+    /* ->use(RefreshDatabase::class) */
     ->beforeEach(function (): void {
         Str::createRandomStringsNormally();
         Str::createUuidsNormally();
@@ -26,10 +28,7 @@ pest()->extend(TestCase::class)
 
 expect()->extend('toBeOne', fn () => $this->toBe(1));
 
-function something(): void
-{
-
-}
+function something(): void {}
 
 function withPackageProviders(): void
 {
@@ -47,5 +46,5 @@ function withPackageProviders(): void
 
 function migratePackage(): void
 {
-    Artisan::call('migrate', ['--database' => 'testing']);
+    /* Artisan::call('migrate'); */
 }
