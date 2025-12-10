@@ -2,11 +2,13 @@
 
 namespace Adichan\Wallet\Tests;
 
+/* use Illuminate\Foundation\Testing\TestCase as BaseTestCase; */
+
 use Adichan\Wallet\WalletServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends Orchestra
+abstract class TestCase extends Orchestra
 {
     use RefreshDatabase;
 
@@ -48,4 +50,5 @@ class TestCase extends Orchestra
             'prefix' => '',
         ]);
     }
+
 }
