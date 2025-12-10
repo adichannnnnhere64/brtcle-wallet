@@ -1,6 +1,6 @@
 {
-    "name": "adichan/transaction",
-    "description": "For transactions",
+    "name": "adichan/wallet",
+    "description": "For Wallet",
     "keywords": [
         "adichan",
         "transaction"
