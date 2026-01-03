@@ -2,11 +2,11 @@
 
 namespace Adichan\Wallet\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Adichan\Wallet\Events\WalletCredited;
 use Adichan\Wallet\Events\WalletDebited;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Wallet extends Model
 {
@@ -14,6 +14,7 @@ class Wallet extends Model
 
     protected $casts = [
         'balance' => 'decimal:2',
+        'meta' => 'array',
     ];
 
     public function owner(): MorphTo
@@ -29,16 +30,38 @@ class Wallet extends Model
     /**
      * Add funds to the wallet.
      */
+    /**
+     * Add funds to the wallet.
+     */
     public function credit(float $amount, string $description = ''): WalletTransaction
     {
         if ($amount <= 0) {
             throw new \InvalidArgumentException('Amount must be positive for credit.');
         }
 
-        $this->increment('balance', $amount);
+        // Round to configured precision
+        $precision = config('wallet.balance_precision', 2);
+        $roundedAmount = round($amount, $precision);
+
+        // If amount rounds to zero, just create a transaction with zero amount
+        if ($roundedAmount <= 0) {
+            return $this->transactions()->create([
+                'type' => config('wallet.transaction_types.credit'),
+                'amount' => 0,
+                'description' => $description.' (rounded to zero)',
+                'balance_after' => $this->balance,
+            ]);
+        }
+
+        // Calculate new balance with proper precision
+        $newBalance = round($this->balance + $roundedAmount, $precision);
+
+        $this->update(['balance' => $newBalance]);
+        $this->refresh();
+
         $transaction = $this->transactions()->create([
             'type' => config('wallet.transaction_types.credit'),
-            'amount' => $amount,
+            'amount' => $roundedAmount,
             'description' => $description,
             'balance_after' => $this->balance,
         ]);

@@ -12,9 +12,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('wallet_id')->constrained()->cascadeOnDelete();
             $table->string('type'); // credit/debit
-            $table->decimal('amount', 15, config('wallet.balance_precision', 2));
+            $table->decimal('amount', 15, 2);
             $table->string('description')->nullable();
-            $table->decimal('balance_after', 15, config('wallet.balance_precision', 2));
+            $table->decimal('balance_after', 15, 2);
+            $table->json('meta')->nullable();
             $table->timestamps();
         });
     }

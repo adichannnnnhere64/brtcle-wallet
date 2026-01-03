@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->decimal('balance', 15, config('wallet.balance_precision', 2))->default(0);
+            $table->decimal('balance', 15, 2)->default(0); // Use direct value for migration
             $table->morphs('owner');
             $table->timestamps();
 
