@@ -1,52 +1,48 @@
-# Very short description of the package
+# Adichan Wallet Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/adichan/product.svg?style=flat-square)](https://packagist.org/packages/adichan/product)
-[![Total Downloads](https://img.shields.io/packagist/dt/adichan/product.svg?style=flat-square)](https://packagist.org/packages/adichan/product)
-![GitHub Actions](https://github.com/adichan/product/actions/workflows/main.yml/badge.svg)
+A comprehensive wallet system for Laravel applications with support for multiple transaction types, caching, events, and API endpoints.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+## Features
+
+- ✅ Multiple wallet support per model
+- ✅ Transaction history with pagination
+- ✅ Built-in caching for performance
+- ✅ Event system for wallet operations
+- ✅ API endpoints (optional)
+- ✅ Transfer between wallets
+- ✅ Validation rules
+- ✅ Decimal precision control
+- ✅ Minimum/maximum balance limits
+- ✅ Morph map support
+- ✅ Queue support for transactions
 
 ## Installation
 
-You can install the package via composer:
-
 ```bash
-composer require adichan/product
-```
+composer require adichan/wallet
 
-## Usage
 
-```php
-// Usage description here
-```
+$user = User::find(1);
 
-### Testing
+// Add funds
+$user->addFunds(100.00, 'Deposit');
 
-```bash
-composer test
-```
+// Deduct funds
+$user->deductFunds(50.00, 'Purchase');
 
-### Changelog
+// Get balance
+$balance = $user->getBalance();
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+// Check sufficient balance
+if ($user->hasSufficientBalance(75.00)) {
+    // Proceed with transaction
+}
 
-## Contributing
+// Get transaction history
+$transactions = $user->getWalletHistory(10);
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+// Transfer funds
+$user->transferFunds($recipient, 25.00, 'Payment');
 
-### Security
-
-If you discover any security related issues, please email mobistyle35@gmail.com instead of using the issue tracker.
-
-## Credits
-
--   [Adrian Radores](https://github.com/adichan)
--   [All Contributors](../../contributors)
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
+// Get wallet summary
+$summary = $user->getWalletSummary();
